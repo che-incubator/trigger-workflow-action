@@ -1,0 +1,31 @@
+name: 'Trigger Workflow Action'
+description: This action is used to trigger workflows by given ID. It also waits for its successful completion.
+author: Mykhailo Kuznietsov mkuznets@redhat.com
+inputs:
+  repo:
+    description: "The name of the repository where the workflow is located. Prefixed with owner, that is separated by slash, e.g. 'eclipse/che'"
+    required: true
+  wait_workflow:
+    description:  "If true, the action will wait until the workflow is finished."
+    required: true
+  wait_initial_delay: 
+    description: "A period of time in minutes, after which workflow run status will start to be queried"
+    required: true
+  wait_interval: 
+    description: "A period of time in seconds, used to specify interval at which workflow run status is queried"
+    required: true
+  workflow_id: 
+    description: "The ID of workflow to trigger. If not set, then workflow name must be provided"
+    required: false
+  workflow_name: 
+    description: "The name of workflow to trigger. If not set, then workflow ID must be provided" 
+    required: false
+  parameters: 
+    description: "A JSON object that will be attached as list of inputs for workflow" 
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'arrow'
+  color: 'gray-dark'
